@@ -1,0 +1,211 @@
+name: Publish examples
+on:
+  schedule:
+    - cron: "0 8 1/2 * *"
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      METRICS_TOKEN:
+        required: true
+      METRICS_TOKEN_WITH_SCOPES:
+        required: true
+      METRICS_TOKEN_PERSONAL:
+        required: true
+      SPOTIFY_TOKENS:
+        required: true
+jobs:
+
+# ======================================================================================
+# Examples renders
+# ======================================================================================
+
+  examples:
+    runs-on: ubuntu-latest
+    if: "github.repository == 'lowlighter/metrics'"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: 🗃️ Base content - Default metrics
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.base.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: header, activity, community, repositories, metadata
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 🧱 Core - Organization
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.organization.svg
+          user: github
+          token: ${{ secrets.METRICS_TOKEN_WITH_SCOPES }}
+          base: header, repositories
+          output_action: none
+          delay: 120
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 🧱 Core - Large display
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.large.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          config_display: large
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 🎼 Music activity and suggestions - Spotify - Random track from playlist
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.plugin.music.playlist.spotify.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_music: yes
+          plugin_music_playlist: https://open.spotify.com/embed/playlist/3nfA87oeJw4LFVcUDjRcqi
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 🎼 Music activity and suggestions - Spotify - Recently listed
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.plugin.music.recent.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_music: yes
+          plugin_music_provider: spotify
+          plugin_music_mode: recent
+          plugin_music_token: ${{ secrets.SPOTIFY_TOKENS }}
+          plugin_music_limit: 2
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 🎼 Music activity and suggestions - Spotify - Top tracks
+        uses: lowlighter/metrics@master
+        with:
+          token: NOT_NEEDED
+          base: ""
+          plugin_music: yes
+          plugin_music_mode: top
+          plugin_music_provider: spotify
+          plugin_music_token: ${{ secrets.SPOTIFY_TOKENS }}
+          plugin_music_time_range: short
+          plugin_music_top_type: tracks
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 🎼 Music activity and suggestions - Spotify - Top artists
+        uses: lowlighter/metrics@master
+        with:
+          token: NOT_NEEDED
+          base: ""
+          plugin_music: yes
+          plugin_music_mode: top
+          plugin_music_provider: spotify
+          plugin_music_token: ${{ secrets.SPOTIFY_TOKENS }}
+          plugin_music_time_range: long
+          plugin_music_top_type: artists
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}    
+      - name: ✒️ Recent posts - Recent posts
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.plugin.posts.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_posts: yes
+          plugin_posts_source: dev.to
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: ✒️ Recent posts - Recent posts with descriptions and cover images
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.plugin.posts.full.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_posts: yes
+          plugin_posts_source: dev.to
+          plugin_posts_limit: 2
+          plugin_posts_descriptions: yes
+          plugin_posts_covers: yes
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}      
+      - name: ⏰ WakaTime - WakaTime
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.plugin.wakatime.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_wakatime: yes
+          plugin_wakatime_sections: time, projects, projects-graphs, languages, languages-graphs, editors, os
+          plugin_wakatime_token: MOCKED_TOKEN
+          use_mocked_data: yes
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 📗 Classic template - Example
+        uses: lowlighter/metrics@master
+        with:
+          filename: metrics.classic.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: header, repositories
+          plugin_lines: yes
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 📘 Repository template - Example
+        uses: lowlighter/metrics@master
+        with:
+          template: repository
+          filename: metrics.repository.svg
+          token: ${{ secrets.METRICS_TOKEN_WITH_SCOPES }}
+          user: lowlighter
+          repo: metrics
+          plugin_lines: yes
+          plugin_followup: yes
+          plugin_projects: yes
+          plugin_projects_repositories: lowlighter/metrics/projects/1
+          output_action: none
+          delay: 120
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+      - name: 📙 Terminal template - Example
+        uses: lowlighter/metrics@master
+        with:
+          template: terminal
+          filename: metrics.terminal.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: header, metadata
+          output_action: none
+          delay: 120
+          user: lowlighter
+          plugins_errors_fatal: yes
+        if: ${{ success() || failure() }}
+  
+              - name: Metrics embed
+                uses: lowlighter/metrics@v3.34
+            
