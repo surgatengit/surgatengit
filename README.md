@@ -9,4 +9,4 @@
 
 [![Surgatl](https://www.hackthebox.com/badge/image/259694)](https://app.hackthebox.com/profile/259694)
 
-<a href="https://open.spotify.com/user/g4vehpi40mimfuucijdchzu7v" target="_blank" rel="noopener">Prueba De Enlace</a>
+<a href="https://open.spotify.com/user/g4vehpi40mimfuucijdchzu7v" target="_blank">Prueba De Enlace</a>
