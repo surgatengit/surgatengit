@@ -1,4 +1,4 @@
-<h1 align="center"> Hi there 👋 I´m Andrés AKA Surgat </h1>
+<h1 align="center"> Hi there 👋 I'm Andrés AKA Surgat </h1>
 
 ---
 - 🔭 I’m currently working on ... Feed the snake. 
