@@ -8,4 +8,4 @@
 - 🌱 I’m currently learning ... Hack profile repository.
 - ⚡ Fun fact: ... CTRL+C CTRL+V normaly works.
 
-<img align="right" src="[![Surgatl](https://www.hackthebox.com/badge/image/259694)](https://app.hackthebox.com/profile/259694)" />
+[![Surgatl](https://www.hackthebox.com/badge/image/259694)](https://app.hackthebox.com/profile/259694)
