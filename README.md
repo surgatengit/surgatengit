@@ -14,5 +14,5 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/surgatengit/surgatengit/output/github-contribution-grid-snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/surgatengit/surgatengit/output/github-contribution-grid-snake.svg">
-  <img alt="Shows contribution grid light mode and in dark mode." src="https://raw.githubusercontent.com/surgatengit/surgatengit/output/github-contribution-grid-snake-dark.svg">
+  <img alt="There is a bug and no change" srcset="https://raw.githubusercontent.com/surgatengit/surgatengit/output/github-contribution-grid-snake-dark.svg">
 </picture>
