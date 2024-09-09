@@ -10,7 +10,9 @@
 <img align="right" src="https://www.hackthebox.com/badge/image/259694" width="350">
 
 ---
-104 contributions in the last year 
+
+104 contributions in the last year
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/surgatengit/surgatengit/output/github-contribution-grid-snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/surgatengit/surgatengit/output/github-contribution-grid-snake.svg">
