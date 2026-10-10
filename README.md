@@ -7,6 +7,7 @@
 ---
 
 <img align="left" src="https://www.hackthebox.com/badge/image/259694" width="350">
+.
 
 ---
 
